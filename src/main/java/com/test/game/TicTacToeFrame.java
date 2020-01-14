@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 public class TicTacToeFrame extends JFrame{
 	
 	public GamePanel gamePanel = null;
+	
 	public TicTacToeFrame() {
 		setLayout(new BorderLayout());
 		setTitle("TicTacToe Game");
@@ -27,10 +28,13 @@ public class TicTacToeFrame extends JFrame{
 	}
 	
 	/**
-	 * add the pan
+	 * add the panel to the frame along with buttons
 	 */
+	
 	public void addPanel() {
 		gamePanel = new GamePanel();
+		
+		gamePanel.addButtonToPanel();
 
 		this.setContentPane(gamePanel);
 	}
