@@ -1,9 +1,11 @@
 package com.test.game.component;
 
 /**
- * This is abastact class wich inhertis from JButton
+ * This is abstract class which inherit from JButton
  * 
  * This class add some user defined abstract method.
+ * 
+ * And we can add more custom property later on 
  * 
  * 
  */
