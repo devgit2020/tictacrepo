@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
-import com.test.game.GameConstant;
+import static com.test.game.GameConstant.*;
 import com.test.game.TicTacToeFrame;
 
 public class TicTacToeTest {
@@ -21,7 +21,16 @@ public class TicTacToeTest {
 	@Test
 	public void check_AddPanel() {
 		frame.addPanel();
-		assertEquals(frame.getContentPane().getName(), GameConstant.PANEL_NAME);
+		assertEquals(frame.getContentPane().getName(), PANEL_NAME);
+	}
+	
+	@Test
+	public void checkGridSize() {
+		
+		frame.addPanel();
+
+		assertEquals(frame.gamePanel.playDartList.size(), 9, BUTTON_ADD_MESSAGE);
+
 	}
 
 	@AfterAll
