@@ -22,7 +22,7 @@ public class GamePanel extends JPanel {
 
 	// holds 9 play button reference of game board
 
-	public List<GameDart> playDartList = null;
+	public static List<GameDart> playDartList = null;
 
 	// event listener for play button
 	public PlayButtonListener buttonListener = null;
