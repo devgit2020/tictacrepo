@@ -17,5 +17,10 @@ public class GameConstant {
 	public static final String BUTTON_ADD_MESSAGE = "The grid size of tic tac game is 3X3.";
 
 	public static final String GAME_INITIAL_STATUS = "Game has not started yet.";
+	
+	public static final String GAME_DRAW = " The Game is Draw. ";
+	
+	public static final String GAME_CONTINUE = "Match has not over yet! ";
+	
 
 }
