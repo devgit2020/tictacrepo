@@ -36,7 +36,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.game.tictactoe.board.GameBoard</mainClass>
+							<mainClass>com.test.game.GameBoard</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
