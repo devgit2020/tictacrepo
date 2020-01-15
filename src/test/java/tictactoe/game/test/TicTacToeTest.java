@@ -141,7 +141,29 @@ public class TicTacToeTest {
 				dartList.get(i).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_2);
 		}
 
-		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.DRAW, GameConstant.GAME_DRAW);
+	}
+
+	@Test
+	public void player_One_Win_ByMathing_Click_Of_WinningRules() {
+
+		GameRules rules = new GameRules();
+
+		List<GameDart> dartList = new ArrayList<>();
+		for (int count = 0; count <= 8; count++) {
+
+			GameDart compButton = new GameDartImpl();
+			compButton.setCustomProperty(GameConstant.PLAYED, Math.random());
+			dartList.add(compButton);
+		}
+
+		// random clicks to see player is in draw situation
+		int[] clickPosition = { 0, 4, 1, 6, 2, 4, 5, 7, 8 };
+		for (int i = 0; i < clickPosition.length; i++) {
+			if (i % 2 == 0)
+				dartList.get(i).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_1);
+			else
+				dartList.get(i).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_2);
+		}
 
 	}
 
