@@ -115,7 +115,33 @@ public class TicTacToeTest {
 
 		// after random clicks, assert the status
 		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.CONTINUE,
-				"Match has not over yet! ");
+				GameConstant.GAME_CONTINUE);
+
+	}
+
+	@Test
+	public void drawGame_Where_No_WinningRules_Match() {
+
+		GameRules rules = new GameRules();
+
+		List<GameDart> dartList = new ArrayList<>();
+		for (int count = 0; count <= 8; count++) {
+
+			GameDart compButton = new GameDartImpl();
+			compButton.setCustomProperty(GameConstant.PLAYED, Math.random());
+			dartList.add(compButton);
+		}
+
+		// random clicks to see player is in draw situation
+		int[] clickPosition = { 0, 2, 1, 3, 6, 4, 5, 7, 8 };
+		for (int i = 0; i < clickPosition.length; i++) {
+			if (i % 2 == 0)
+				dartList.get(i).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_1);
+			else
+				dartList.get(i).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_2);
+		}
+
+		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.DRAW, GameConstant.GAME_DRAW);
 
 	}
 
