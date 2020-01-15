@@ -24,6 +24,8 @@ public class GameConstant {
 	
 	public static final String GAME_WIN  = "Player  Win!";
 	
+	public static final String DISABLE_ALL_BUTTON_AFTERWIN  = "Disable All Button After win";
+	
 	
 	
 
