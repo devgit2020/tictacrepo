@@ -56,6 +56,8 @@ public class PlayButtonListener implements ActionListener {
 		// Swap the value for next click
 		previousTurn = nextTurn;
 		
+		this.currentStatus = rules.statusCheck(dartList, GameConstant.PLAYED); // return the current status of the game and it call in each player played
+		
 		
 
 	}
