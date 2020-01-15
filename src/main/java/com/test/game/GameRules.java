@@ -1,7 +1,6 @@
 package com.test.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.awt.Color;
 import java.util.List;
 
 import com.test.game.component.GameDart;
@@ -43,13 +42,35 @@ public class GameRules {
 
 		gameStatus = GameStatusEnum.CONTINUE;
 
-		long clickedCount = dartList.stream()
-				.filter(button -> button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_1)
-						|| button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_2))
-				.count();
+		List<List<Integer>> winningRules = GamePatterns.gamePattern();
 
-		return clickedCount == 9 ? GameStatusEnum.DRAW : GameStatusEnum.CONTINUE;
+		winningRules.forEach(rule -> {
+			if (((dartList.get(rule.get(0)).getCustomProperty(clientProperty))
+					.equals((dartList.get(rule.get(1)).getCustomProperty(clientProperty))))
+					&& ((dartList.get(rule.get(1)).getCustomProperty(clientProperty))
+							.equals((dartList.get(rule.get(2)).getCustomProperty(clientProperty))))) {
 
+				dartList.get(rule.get(0)).setBackground(Color.GREEN);
+				dartList.get(rule.get(1)).setBackground(Color.GREEN);
+				dartList.get(rule.get(2)).setBackground(Color.GREEN);
+
+				gameStatus = GameStatusEnum.WIN;
+
+			}
+		});
+
+		if (gameStatus.equals(GameStatusEnum.WIN)) {
+			return gameStatus;
+		} else {
+
+			long clickedCount = dartList.stream()
+					.filter(button -> button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_1)
+							|| button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_2))
+					.count();
+
+			return clickedCount == 9 ? GameStatusEnum.DRAW : GameStatusEnum.CONTINUE;
+
+		}
 	}
 
 }
