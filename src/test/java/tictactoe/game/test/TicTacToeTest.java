@@ -7,6 +7,7 @@ import static com.tictactoe.game.constants.GameConstant.PLAYED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +17,12 @@ import org.junit.jupiter.api.Test;
 
 import com.test.game.GameRules;
 import com.test.game.TicTacToeFrame;
+import com.test.game.component.GameDart;
+import com.test.game.component.GameDartImpl;
+import com.tictactoe.game.constants.GameConstant;
+import com.tictactoe.game.enums.GameStatusEnum;
 import com.tictactoe.game.enums.PlayerEnum;
+import com.tictactoe.game.utils.GamePatterns;
 
 public class TicTacToeTest {
 
@@ -54,35 +60,63 @@ public class TicTacToeTest {
 		assertEquals(count, 0, GAME_INITIAL_STATUS);
 
 	}
-	
+
 	@Test
-	public void gamePattern() {
-		
+	public void validateGamePattern() {
+
 		GameRules rules = new GameRules();
 
 		List<Integer> pattern1 = Arrays.asList(0, 1, 2);
-		assertTrue(rules.winningRules.contains(pattern1));
+		assertPatterns(rules, pattern1);
 
 		List<Integer> pattern2 = Arrays.asList(3, 4, 5);
-		assertTrue(rules.winningRules.contains(pattern2));
+		assertPatterns(rules, pattern2);
 
 		List<Integer> pattern3 = Arrays.asList(6, 7, 8);
-		assertTrue(rules.winningRules.contains(pattern3));
+		assertPatterns(rules, pattern3);
 
 		List<Integer> pattern4 = Arrays.asList(0, 3, 6);
-		assertTrue(rules.winningRules.contains(pattern4));
+		assertPatterns(rules, pattern4);
 
 		List<Integer> pattern5 = Arrays.asList(1, 4, 7);
-		assertTrue(rules.winningRules.contains(pattern5));
+		assertPatterns(rules, pattern5);
 
 		List<Integer> pattern6 = Arrays.asList(2, 5, 8);
-		assertTrue(rules.winningRules.contains(pattern6));
+		assertPatterns(rules, pattern6);
 
 		List<Integer> pattern7 = Arrays.asList(0, 4, 8);
-		assertTrue(rules.winningRules.contains(pattern7));
+		assertPatterns(rules, pattern7);
 
 		List<Integer> pattern8 = Arrays.asList(2, 4, 6);
-		assertTrue(rules.winningRules.contains(pattern8));
+		assertPatterns(rules, pattern8);
+	}
+
+	private void assertPatterns(GameRules rules, List<Integer> pattern) {
+		assertTrue(GamePatterns.gamePattern().contains(pattern));
+	}
+
+	@Test
+	public void validateContinueStatus() {
+
+		GameRules rules = new GameRules();
+		List<GameDart> dartList = new ArrayList<>();
+
+		for (int count = 0; count <= 8; count++) {
+			GameDart compButton = new GameDartImpl();
+			compButton.setCustomProperty(GameConstant.PLAYED, Math.random());
+			dartList.add(compButton);
+		}
+
+		// random clicks to see player is in continue
+		int[] clickPosition = { 7, 8, 4, 2 };
+		for (Integer i : clickPosition) {
+			dartList.get(i).doClick();
+		}
+
+		// after random clicks, assert the status
+		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.CONTINUE,
+				"Match has not over yet! ");
+
 	}
 
 	@AfterAll
