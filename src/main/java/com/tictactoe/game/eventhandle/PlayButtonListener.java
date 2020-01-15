@@ -2,7 +2,10 @@ package com.tictactoe.game.eventhandle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+import com.test.game.GamePanel;
+import com.test.game.GameRules;
 import com.test.game.component.GameDart;
 import com.tictactoe.game.constants.GameConstant;
 import com.tictactoe.game.enums.GameStatusEnum;
@@ -23,6 +26,11 @@ public class PlayButtonListener implements ActionListener {
 	// player1 initial value
 	public PlayerEnum nextTurn = PlayerEnum.PLAYER_1;
 	public GameStatusEnum currentStatus = null;
+	
+	// this defines the game rules
+	public GameRules rules = new GameRules();
+	
+	List<GameDart> dartList = GamePanel.playDartList;
 
 	/**
 	 * This methods handles the action performed by the players
@@ -47,6 +55,8 @@ public class PlayButtonListener implements ActionListener {
 
 		// Swap the value for next click
 		previousTurn = nextTurn;
+		
+		
 
 	}
 }
