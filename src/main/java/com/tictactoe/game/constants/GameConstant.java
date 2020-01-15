@@ -22,5 +22,9 @@ public class GameConstant {
 	
 	public static final String GAME_CONTINUE = "Match has not over yet! ";
 	
+	public static final String GAME_WIN  = "Player  Win!";
+	
+	
+	
 
 }
