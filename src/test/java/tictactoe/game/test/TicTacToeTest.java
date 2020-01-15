@@ -145,7 +145,31 @@ public class TicTacToeTest {
 
 	}
 
+	@Test
+	public void winScenario() {
 
+		GameRules rules = new GameRules();
+
+		List<GameDart> dartList = new ArrayList<>();
+		for (int count = 0; count <= 8; count++) {
+
+			GameDart compButton = new GameDartImpl();
+			compButton.setCustomProperty(GameConstant.PLAYED, Math.random());
+			dartList.add(compButton);
+		}
+
+		// random clicks to see player is in win situation
+		int[] clickPosition = { 0, 4, 1, 6, 2 };
+		for (int i = 0; i < clickPosition.length; i++) {
+			if (i % 2 == 0)
+				dartList.get(clickPosition[i]).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_1);
+			else
+				dartList.get(clickPosition[i]).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_2);
+		}
+
+		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.WIN, GameConstant.GAME_WIN);
+
+	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
