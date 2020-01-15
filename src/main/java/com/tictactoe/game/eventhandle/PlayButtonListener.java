@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.test.game.GamePanel;
 import com.test.game.GameRules;
 import com.test.game.component.GameDart;
@@ -55,12 +57,26 @@ public class PlayButtonListener implements ActionListener {
 
 		// Swap the value for next click
 		previousTurn = nextTurn;
-		//return the current status of the game and it call in each player played
-		this.currentStatus = rules.statusCheck(dartList, GameConstant.PLAYED); 
-																				
+		// return the current status of the game and it call in each player played
+		this.currentStatus = rules.statusCheck(dartList, GameConstant.PLAYED);
 		
-		// after the win, no one can click again in any of button
-		if(this.currentStatus == GameStatusEnum.WIN) disableAllButtons(dartList);
+		
+		if (this.currentStatus.equals(GameStatusEnum.WIN)) { // if currentStatus value is WIN , show the winning player
+			 
+			JOptionPane.showMessageDialog(null, "Player " + clickedButton.getText() + " Wins");
+			
+			// if Winner is found then disable all un-clicked button
+			this.disableAllButtons(dartList); 
+
+		} else if (this.currentStatus.equals(GameStatusEnum.DRAW)) { // if currentStatus value is DRAW then show the draw message
+												
+			JOptionPane.showMessageDialog(null, "Draw");
+		} else {
+			// Now Let it be contiune the play when the status is CONTINUE;
+		}
+
+	
+			
 
 	}
 
@@ -69,7 +85,7 @@ public class PlayButtonListener implements ActionListener {
 	 * 
 	 * @param dartList
 	 */
-	
+
 	protected void disableAllButtons(List<GameDart> dartList) {
 
 		dartList.forEach(button -> button.setEnabled(false));
