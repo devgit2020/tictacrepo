@@ -170,6 +170,34 @@ public class TicTacToeTest {
 		assertEquals(rules.statusCheck(dartList, GameConstant.PLAYED), GameStatusEnum.WIN, GameConstant.GAME_WIN);
 
 	}
+	
+	@Test
+	public void verify_AllButton_Disable_AfterWin() {
+
+		GameRules rules = new GameRules();
+
+		List<GameDart> dartList = new ArrayList<>();
+		for (int count = 0; count <= 8; count++) {
+
+			GameDart compButton = new GameDartImpl();
+			compButton.setCustomProperty(GameConstant.PLAYED, Math.random());
+			dartList.add(compButton);
+		}
+
+		// random clicks to see player is in win situation
+		int[] clickPosition = { 0, 4, 1, 6, 2 };
+		for (int i = 0; i < clickPosition.length; i++) {
+			if (i % 2 == 0)
+				dartList.get(clickPosition[i]).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_1);
+			else
+				dartList.get(clickPosition[i]).setCustomProperty(GameConstant.PLAYED, PlayerEnum.PLAYER_2);
+		}
+
+		long count = frame.gamePanel.playDartList.stream().filter(button -> button.isEnabled() == true).count();
+		
+		assertEquals(count, 9,GameConstant.DISABLE_ALL_BUTTON_AFTERWIN);
+					
+	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
