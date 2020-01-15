@@ -1,8 +1,8 @@
-# Project Title
+## ## Project Title
 
 Tic-tac-toe Game application. 
 
-## Getting Started
+## ## Getting Started
 
 
 The game can play by two player.
@@ -17,11 +17,11 @@ The player to get 3 of his marks in a row (up, down, across, or diagonally) is t
 
 When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
 
-### Prerequisites
+## ## Prerequisites
 
 To run the application on the desktop or laptop, need to have JRE version 1.8 and above. 
 
-### Installing
+## ## Installing
 
 Below are the steps download the application to your local desktop.
 
@@ -69,8 +69,8 @@ The Swing API has numerous UI Component to develop the UI and it has the platfor
 The application is using Java 8 as core technology to use all the advance feature as like Stream, Lambda etc. 
 
 
-## Versioning
+## ## Versioning
 
-The initial release version is 0.0.1.  
+The first release version is 0.0.1.  
 
 
