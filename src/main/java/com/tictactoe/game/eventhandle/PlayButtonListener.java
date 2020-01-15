@@ -26,10 +26,10 @@ public class PlayButtonListener implements ActionListener {
 	// player1 initial value
 	public PlayerEnum nextTurn = PlayerEnum.PLAYER_1;
 	public GameStatusEnum currentStatus = null;
-	
+
 	// this defines the game rules
 	public GameRules rules = new GameRules();
-	
+
 	List<GameDart> dartList = GamePanel.playDartList;
 
 	/**
@@ -55,10 +55,24 @@ public class PlayButtonListener implements ActionListener {
 
 		// Swap the value for next click
 		previousTurn = nextTurn;
+		//return the current status of the game and it call in each player played
+		this.currentStatus = rules.statusCheck(dartList, GameConstant.PLAYED); 
+																				
 		
-		this.currentStatus = rules.statusCheck(dartList, GameConstant.PLAYED); // return the current status of the game and it call in each player played
-		
-		
+		// after the win, no one can click again in any of button
+		if(this.currentStatus == GameStatusEnum.WIN) disableAllButtons(dartList);
+
+	}
+
+	/**
+	 * This method disable all the button
+	 * 
+	 * @param dartList
+	 */
+	
+	protected void disableAllButtons(List<GameDart> dartList) {
+
+		dartList.forEach(button -> button.setEnabled(false));
 
 	}
 }
