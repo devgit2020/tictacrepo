@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.test.game.component.GameDart;
+import com.tictactoe.game.enums.GameStatusEnum;
+import com.tictactoe.game.enums.PlayerEnum;
+import com.tictactoe.game.utils.GamePatterns;
+
 /**
  * 
  * It defines the rules for win / continue / draw
@@ -16,41 +21,35 @@ import java.util.List;
  *
  */
 
-public class GameRules  {
+public class GameRules {
 
-	// defines the winning dimension rules
-	public List<List<Integer>> winningRules = new ArrayList<>(); 
-	
+	GameStatusEnum gameStatus = null;
+
 	/**
 	 * Initialize the winning condition at first time
 	 * 
 	 * 
 	 */
 	public GameRules() {
-		rulesInitializeForTheWin();
+		GamePatterns.gamePattern();
 	}
 
 	/**
-	 * Initialize the 8 different criteria / rule to win the match
+	 * check the game status
 	 * 
 	 */
 
-	private void rulesInitializeForTheWin() {
+	public GameStatusEnum statusCheck(List<GameDart> dartList, String clientProperty) {
 
-		winningRules.add(Arrays.asList(0, 1, 2));
-		winningRules.add(Arrays.asList(3, 4, 5));
-		winningRules.add(Arrays.asList(6, 7, 8));
-		winningRules.add(Arrays.asList(0, 3, 6));
-		winningRules.add(Arrays.asList(1, 4, 7));
-		winningRules.add(Arrays.asList(2, 5, 8));
-		winningRules.add(Arrays.asList(0, 4, 8));
-		winningRules.add(Arrays.asList(2, 4, 6));
+		gameStatus = GameStatusEnum.CONTINUE;
+
+		long clickedCount = dartList.stream()
+				.filter(button -> button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_1)
+						|| button.getCustomProperty(clientProperty).equals(PlayerEnum.PLAYER_2))
+				.count();
+
+		return clickedCount == 9 ? GameStatusEnum.DRAW : GameStatusEnum.CONTINUE;
 
 	}
-
-	
-
-	
-		
 
 }
