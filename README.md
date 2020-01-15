@@ -26,6 +26,7 @@ To run the application on the desktop or laptop, need to have JRE version 1.8 an
 Below are the steps download the application to your local desktop.
 
 1.	Enter the below URL in the browser and then clone or download the application.
+	Clone URL - https://github.com/devgit2020/tictacrepo.git
 
 2.	Import the application as maven Project on your local IDE (Eclipse, IntelliJ) etc.
 
