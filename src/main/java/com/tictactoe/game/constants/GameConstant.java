@@ -3,7 +3,7 @@ package com.tictactoe.game.constants;
 /**
  * 
  * This class defines the constants 
- * for tic tac game rules
+ * for tictactoe game rules.
  * 
  * 
  *
