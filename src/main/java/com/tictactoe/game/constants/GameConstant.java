@@ -2,7 +2,8 @@ package com.tictactoe.game.constants;
 
 /**
  * 
- * This class defines the constants
+ * This class defines the constants 
+ * for tic tac game rules
  * 
  * 
  *
@@ -26,7 +27,4 @@ public class GameConstant {
 	
 	public static final String DISABLE_ALL_BUTTON_AFTERWIN  = "Disable All Button After win";
 	
-	
-	
-
 }
