@@ -4,8 +4,6 @@ package com.tictactoe.game.constants;
  * 
  * This class defines the constants 
  * for tictactoe game rules.
- * 
- * 
  *
  */
 
